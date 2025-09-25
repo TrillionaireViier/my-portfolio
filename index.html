@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Web Developer & Designer</title>
+    <meta name="description" content="Professional web developer and designer portfolio. Showcasing beautiful, functional websites and digital experiences across various industries.">
+    <meta name="author" content="Web Developer">
+    <meta name="keywords" content="web developer, web designer, portfolio, websites, frontend, Ukraine">
+    
+    <meta property="og:title" content="Portfolio | Web Developer & Designer">
+    <meta property="og:description" content="Professional web developer and designer portfolio. Showcasing beautiful, functional websites and digital experiences across various industries.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@lovable_dev">
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png">
+    
+    <style>
+        :root {
+          /* Colors */
+          --primary: 214 82% 51%;
+          --primary-foreground: 210 40% 98%;
+          --secondary: 210 40% 96%;
+          --secondary-foreground: 222.2 84% 4.9%;
+          --accent: 210 40% 93%;
+          --accent-foreground: 222.2 84% 4.9%;
+          --muted: 210 40% 96%;
+          --muted-foreground: 215.4 16.3% 46.9%;
+          --background: 0 0% 100%;
+          --foreground: 222.2 84% 4.9%;
+          --card: 0 0% 100%;
+          --card-foreground: 222.2 84% 4.9%;
+          --border: 214.3 31.8% 91.4%;
+          --ring: 214 82% 51%;
+
+          /* Gradients */
+          --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(214 100% 70%));
+          --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+
+          /* Shadows */
+          --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+          --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+          /* Transitions */
+          --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+          :root {
+            --primary: 214 82% 51%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 222.2 84% 4.9%;
+            --secondary-foreground: 210 40% 98%;
+            --accent: 217.2 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+            --muted: 217.2 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+            --background: 222.2 84% 4.9%;
+            --foreground: 210 40% 98%;
+            --card: 222.2 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+            --border: 217.2 32.6% 17.5%;
+            --ring: 214 82% 51%;
+          }
+        }
+
+        /* Reset */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          background: var(--gradient-subtle);
+          color: hsl(var(--foreground));
+          line-height: 1.6;
+          min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 2rem 1rem;
+        }
+
+        /* Header */
+        .header {
+          text-align: center;
+          margin-bottom: 3rem;
+        }
+
+        .profile-section {
+          animation: fadeInScale 0.8s ease-out;
+        }
+
+        /* Image Slider Styles */
+        .image-slider {
+          position: relative;
+          width: 120px;
+          height: 120px;
+          margin: 0 auto 1.5rem;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 4px solid hsl(var(--primary));
+          box-shadow: var(--shadow-card);
+        }
+
+        .slider-container {
+          display: flex;
+          width: 300%;
+          height: 100%;
+          transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-image {
+          width: 33.333%;
+          height: 100%;
+          object-fit: cover;
+          flex-shrink: 0;
+        }
+
+        .slider-nav {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-bottom: 1rem;
+        }
+
+        .slider-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: hsl(var(--muted-foreground));
+          cursor: pointer;
+          transition: var(--transition-smooth);
+        }
+
+        .slider-dot.active {
+          background: hsl(var(--primary));
+          transform: scale(1.2);
+        }
+
+        .profile-name {
+          font-size: 2.5rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+          background: var(--gradient-primary);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .profile-bio {
+          color: hsl(var(--muted-foreground));
+          font-size: 1.125rem;
+          max-width: 500px;
+          margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-section {
+          background: hsl(var(--card));
+          border: 1px solid hsl(var(--border));
+          border-radius: 1rem;
+          padding: 2rem;
+          margin-bottom: 3rem;
+          animation: slideUp 0.6s ease-out 0.2s forwards;
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        .section-title {
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          color: hsl(var(--primary));
+        }
+
+        .dropdown-section {
+          margin-bottom: 1rem;
+        }
+
+        .dropdown-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem;
+          background: hsl(var(--muted));
+          border: 1px solid hsl(var(--border));
+          border-radius: 0.5rem;
+          cursor: pointer;
+          transition: var(--transition-smooth);
+        }
+
+        .dropdown-header:hover {
+          background: hsl(var(--accent));
+        }
+
+        .dropdown-header h3 {
+          font-size: 1.125rem;
+          font-weight: 600;
+          color: hsl(var(--foreground));
+        }
+
+        .dropdown-arrow {
+          width: 1.25rem;
+          height: 1.25rem;
+          color: hsl(var(--muted-foreground));
+          transition: var(--transition-smooth);
+        }
+
+        .dropdown-header.active .dropdown-arrow {
+          transform: rotate(180deg);
+          color: hsl(var(--primary));
+        }
+
+        .dropdown-body {
+          display: none;
+          padding: 1rem;
+          background: hsl(var(--card));
+          border: 1px solid hsl(var(--border));
+          border-top: none;
+          border-radius: 0 0 0.5rem 0.5rem;
+          animation: slideDown 0.3s ease-out;
+        }
+
+        .dropdown-body.show {
+          display: block;
+        }
+
+        .dropdown-body p {
+          color: hsl(var(--muted-foreground));
+          line-height: 1.6;
+          margin-bottom: 0.5rem;
+        }
+
+        .dropdown-body ul {
+          list-style: none;
+          padding-left: 0;
+        }
+
+        .dropdown-body li {
+          padding: 0.25rem 0;
+          color: hsl(var(--muted-foreground));
+        }
+
+        .dropdown-body li::before {
+          content: "•";
+          color: hsl(var(--primary));
+          margin-right: 0.5rem;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 1.5rem;
+        }
+
+        /* Portfolio Cards */
+        .portfolio-card {
+          background: hsl(var(--card));
+          border: 1px solid hsl(var(--border));
+          border-radius: 1rem;
+          padding: 1.5rem;
+          cursor: pointer;
+          position: relative;
+          overflow: visible;
+          transition: var(--transition-smooth);
+          animation: slideUp 0.6s ease-out forwards;
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        .portfolio-card:hover {
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-hover);
+        }
+
+        .portfolio-card:hover::before {
+          opacity: 1;
+        }
+
+        .portfolio-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: var(--gradient-primary);
+          opacity: 0;
+          transition: var(--transition-smooth);
+          mix-blend-mode: overlay;
+          border-radius: 1rem;
+        }
+
+        .card-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+        }
+
+        .card-header > div:first-child {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+        .card-icon {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          background: var(--gradient-primary);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: var(--shadow-card);
+        }
+
+        .card-icon .icon {
+          width: 1.5rem;
+          height: 1.5rem;
+          color: white;
+        }
+
+        .card-title {
+          font-size: 1.125rem;
+          font-weight: 600;
+          color: hsl(var(--foreground));
+          transition: var(--transition-smooth);
+          margin-bottom: 0.25rem;
+        }
+
+        .portfolio-card:hover .card-title {
+          color: hsl(var(--primary));
+        }
+
+        .card-category {
+          font-size: 0.75rem;
+          color: hsl(var(--muted-foreground));
+          background: hsl(var(--muted));
+          padding: 0.25rem 0.5rem;
+          border-radius: 9999px;
+        }
+
+        .external-link {
+          width: 1.25rem;
+          height: 1.25rem;
+          color: hsl(var(--muted-foreground));
+          transition: var(--transition-smooth);
+        }
+
+        .portfolio-card:hover .external-link {
+          color: hsl(var(--primary));
+        }
+
+        .card-description {
+          color: hsl(var(--muted-foreground));
+          font-size: 0.875rem;
+          margin-bottom: 1rem;
+        }
+
+        .card-domain {
+          font-size: 0.75rem;
+          color: hsl(var(--primary));
+          background: hsl(var(--primary) / 0.1);
+          padding: 0.5rem 0.75rem;
+          border-radius: 0.5rem;
+          font-family: 'Courier New', monospace;
+        }
+
+        /* Dropdown Styles */
+        .dropdown-toggle {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          transition: var(--transition-smooth);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .dropdown-toggle svg {
+          width: 1.25rem;
+          height: 1.25rem;
+          color: hsl(var(--muted-foreground));
+          transition: var(--transition-smooth);
+        }
+
+        .dropdown-toggle:hover {
+          background: hsl(var(--accent));
+        }
+
+        .dropdown-toggle:hover svg {
+          color: hsl(var(--primary));
+        }
+
+        .dropdown-toggle.active svg {
+          transform: rotate(180deg);
+          color: hsl(var(--primary));
+        }
+
+        .dropdown-content {
+          display: none;
+          margin-top: 1rem;
+          padding: 1rem;
+          background: hsl(var(--muted));
+          border: 1px solid hsl(var(--border));
+          border-radius: 0.5rem;
+          animation: slideDown 0.3s ease-out;
+        }
+
+        .dropdown-content.show {
+          display: block;
+        }
+
+        .dropdown-item {
+          padding: 0.5rem 0;
+          font-size: 0.875rem;
+          border-bottom: 1px solid hsl(var(--border));
+        }
+
+        .dropdown-item:last-child {
+          border-bottom: none;
+        }
+
+        .dropdown-item strong {
+          color: hsl(var(--primary));
+          margin-right: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+          0% {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes slideUp {
+          0% {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideDown {
+          0% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .container {
+            padding: 1rem;
+          }
+          
+          .profile-name {
+            font-size: 2rem;
+          }
+          
+          .portfolio-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+          
+          .portfolio-card {
+            padding: 1rem;
+          }
+
+          .about-section {
+            padding: 1.5rem;
+          }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <div class="profile-section">
+                <!--  Added image slider with 3 photos -->
+                <div class="image-slider">
+                    <div class="slider-container" id="sliderContainer">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2025-03-12%2002.25.41.jpg-eefo9JmguWguN44WKoTCud6IR8SgVg.jpeg" alt="Profile Photo 1" class="slider-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2025-03-12%2002.26.00.jpg-da4z6bd8tYYf8udBuUkFD0x6Upr03C.jpeg" alt="Profile Photo 2" class="slider-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMAGE%202025-09-25%2020%3A44%3A26.jpg-xb81yjmyjE94kpcjz54cdWK1HF3gih.jpeg" alt="Profile Photo 3" class="slider-image">
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+                <h1 class="profile-name">Web Developer & Designer</h1>
+                <p class="profile-bio">Creating beautiful, functional websites and digital experiences</p>
+            </div>
+        </header>
+
+        <!--  Added about section with dropdown explanations -->
+        <section class="about-section">
+            <h2 class="section-title">About Me</h2>
+            
+            <div class="dropdown-section">
+                <div class="dropdown-header" data-target="experience">
+                    <h3>Professional Experience</h3>
+                    <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                </div>
+                <div class="dropdown-body" id="experience">
+                    <p>With over 5 years of experience in web development, I specialize in creating modern, responsive websites that deliver exceptional user experiences.</p>
+                    <ul>
+                        <li>Frontend Development: React, Vue.js, HTML5, CSS3, JavaScript</li>
+                        <li>Backend Development: PHP, Laravel, Node.js, MySQL</li>
+                        <li>CMS Expertise: WordPress, Custom CMS Solutions</li>
+                        <li>E-commerce: WooCommerce, Custom Shopping Solutions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dropdown-section">
+                <div class="dropdown-header" data-target="services">
+                    <h3>Services Offered</h3>
+                    <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                </div>
+                <div class="dropdown-body" id="services">
+                    <p>I provide comprehensive web development services tailored to meet your business needs:</p>
+                    <ul>
+                        <li>Custom Website Development</li>
+                        <li>Responsive Web Design</li>
+                        <li>E-commerce Solutions</li>
+                        <li>Content Management Systems</li>
+                        <li>Website Maintenance & Support</li>
+                        <li>SEO Optimization</li>
+                        <li>Performance Optimization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dropdown-section">
+                <div class="dropdown-header" data-target="approach">
+                    <h3>Development Approach</h3>
+                    <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                </div>
+                <div class="dropdown-body" id="approach">
+                    <p>My development process focuses on delivering high-quality, scalable solutions:</p>
+                    <ul>
+                        <li>Mobile-first responsive design</li>
+                        <li>Clean, maintainable code</li>
+                        <li>Performance optimization</li>
+                        <li>Cross-browser compatibility</li>
+                        <li>SEO best practices</li>
+                        <li>Accessibility standards compliance</li>
+                        <li>Regular testing and quality assurance</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="portfolio-grid">
+            <!-- ... existing code ... -->
+            <div class="portfolio-card" data-url="https://regionbud.com.ua/" data-delay="0">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">RegionBud</h3>
+                        <span class="card-category">Construction</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit regionbud.com.ua</p>
+                <div class="card-domain">regionbud.com.ua</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Construction & Building Materials
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Commercial construction, residential projects
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> Ukraine
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> WordPress, Custom PHP, Responsive Design
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="https://dp.torus-stroi.ua/ua" data-delay="100">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Torus Stroi</h3>
+                        <span class="card-category">Construction</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit dp.torus-stroi.ua</p>
+                <div class="card-domain">dp.torus-stroi.ua</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Construction & Engineering
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Industrial construction, infrastructure
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> Dnipro, Ukraine
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> Custom CMS, PHP, Mobile-first Design
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="https://venbud.com.ua/" data-delay="200">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">VenBud</h3>
+                        <span class="card-category">Construction</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit venbud.com.ua</p>
+                <div class="card-domain">venbud.com.ua</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Construction & Development
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Residential construction, project management
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> Ukraine
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> WordPress, E-commerce, SEO Optimization
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="https://pic-distribution.ua/" data-delay="300">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">PIC Distribution</h3>
+                        <span class="card-category">Distribution</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit pic-distribution.ua</p>
+                <div class="card-domain">pic-distribution.ua</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Distribution & Logistics
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Supply chain management, wholesale
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> Ukraine
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> Laravel, Inventory Management, API Integration
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="https://www.dentalexcellence.ro" data-delay="400">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Dental Excellence</h3>
+                        <span class="card-category">Healthcare</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit dentalexcellence.ro</p>
+                <div class="card-domain">dentalexcellence.ro</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Healthcare & Dental Services
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Dental care, orthodontics, implants
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> Romania
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> WordPress, Appointment System, Medical SEO
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="https://dentocare.ro/aparat-dentar/" data-delay="500">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">DentoCare</h3>
+                        <span class="card-category">Healthcare</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit dentocare.ro</p>
+                <div class="card-domain">dentocare.ro</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Orthodontic Services
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Braces, dental aligners, orthodontic care
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> Romania
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> Custom CMS, Patient Portal, Online Booking
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="http://kasi.justtwic.art/" data-delay="600">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Kasi Art</h3>
+                        <span class="card-category">Art</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit kasi.justtwic.art</p>
+                <div class="card-domain">kasi.justtwic.art</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Digital Art & Portfolio
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Digital artwork, creative portfolio showcase
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> International
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> React, Gallery System, Interactive Design
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="https://egersund.ua" data-delay="700">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Egersund</h3>
+                        <span class="card-category">Business</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit egersund.ua</p>
+                <div class="card-domain">egersund.ua</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Industrial Equipment & Solutions
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Equipment sales, industrial solutions
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> Ukraine
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> E-commerce, Product Catalog, CRM Integration
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="https://frankedelafuente.com" data-delay="800">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Franke de la Fuente</h3>
+                        <span class="card-category">Personal</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit frankedelafuente.com</p>
+                <div class="card-domain">frankedelafuente.com</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Personal Brand & Portfolio
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Professional profile, personal branding
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> International
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> Custom Design, Personal CMS, Contact Forms
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="https://www.salonjersey.com.ua" data-delay="900">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Salon Jersey</h3>
+                        <span class="card-category">Beauty</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit salonjersey.com.ua</p>
+                <div class="card-domain">salonjersey.com.ua</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Beauty & Wellness
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Hair styling, beauty treatments, spa services
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> Ukraine
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> Booking System, Gallery, Client Management
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="https://gatdinc.ca" data-delay="1000">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">GATD Inc</h3>
+                        <span class="card-category">Business</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit gatdinc.ca</p>
+                <div class="card-domain">gatdinc.ca</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Technology & Development
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Software development, IT consulting
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> Canada
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> Corporate Site, Service Portal, Multi-language
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-url="https://orientway.com.ua/" data-delay="1100">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">OrientWay</h3>
+                        <span class="card-category">Business</span>
+                    </div>
+                    <button class="dropdown-toggle" aria-label="Show more details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <svg class="external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15,3 21,3 21,9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <p class="card-description">Visit orientway.com.ua</p>
+                <div class="card-domain">orientway.com.ua</div>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <strong>Industry:</strong> Business Consulting & Services
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Services:</strong> Business consulting, strategic planning
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Location:</strong> Ukraine
+                    </div>
+                    <div class="dropdown-item">
+                        <strong>Technologies:</strong> Corporate CMS, Lead Generation, Analytics
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const portfolioCards = document.querySelectorAll('.portfolio-card');
+            
+            // Add staggered animation delays
+            portfolioCards.forEach((card, index) => {
+                const delay = parseInt(card.getAttribute('data-delay')) || index * 100;
+                card.style.animationDelay = `${delay}ms`;
+            });
+            
+            // Handle card clicks
+            portfolioCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Don't trigger card click if dropdown toggle was clicked
+                    if (e.target.closest('.dropdown-toggle')) {
+                        return;
+                    }
+                    
+                    const url = this.getAttribute('data-url');
+                    if (url) {
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                    }
+                });
+                
+                // Add keyboard navigation
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+                
+                // Make cards focusable
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-label', `Visit ${this.querySelector('.card-title').textContent}`);
+            });
+            
+            // Smooth scroll and intersection observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            portfolioCards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Handle dropdown toggles for portfolio cards
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.portfolio-card');
+                    const content = card.querySelector('.dropdown-content');
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all other dropdowns
+                    dropdownToggles.forEach(otherToggle => {
+                        if (otherToggle !== this) {
+                            otherToggle.classList.remove('active');
+                            const otherContent = otherToggle.closest('.portfolio-card').querySelector('.dropdown-content');
+                            otherContent.classList.remove('show');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    if (isActive) {
+                        this.classList.remove('active');
+                        content.classList.remove('show');
+                    } else {
+                        this.classList.add('active');
+                        content.classList.add('show');
+                    }
+                });
+            });
+
+            //  Added image slider functionality
+            const sliderContainer = document.getElementById('sliderContainer');
+            const sliderDots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            const totalSlides = 3;
+
+            // Auto-advance slider every 4 seconds
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            }, 4000);
+
+            // Handle dot clicks
+            sliderDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+
+            function updateSlider() {
+                const translateX = -currentSlide * (100 / totalSlides);
+                sliderContainer.style.transform = `translateX(${translateX}%)`;
+                
+                // Update active dot
+                sliderDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            //  Added dropdown functionality for about section
+            const aboutDropdownHeaders = document.querySelectorAll('.about-section .dropdown-header');
+            aboutDropdownHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const targetBody = document.getElementById(targetId);
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all other dropdowns in about section
+                    aboutDropdownHeaders.forEach(otherHeader => {
+                        if (otherHeader !== this) {
+                            otherHeader.classList.remove('active');
+                            const otherId = otherHeader.getAttribute('data-target');
+                            const otherBody = document.getElementById(otherId);
+                            otherBody.classList.remove('show');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    if (isActive) {
+                        this.classList.remove('active');
+                        targetBody.classList.remove('show');
+                    } else {
+                        this.classList.add('active');
+                        targetBody.classList.add('show');
+                    }
+                });
+            });
+        });
+
+        // Add hover effects and accessibility
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.closest('.portfolio-card')) {
+                e.target.closest('.portfolio-card').style.transform = 'translateY(-4px)';
+            }
+        });
+
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.closest('.portfolio-card')) {
+                e.target.closest('.portfolio-card').style.transform = 'translateY(0)';
+            }
+        });
+
+        // Focus management for accessibility
+        document.addEventListener('focus', function(e) {
+            if (e.target.classList.contains('portfolio-card')) {
+                e.target.style.outline = '2px solid hsl(214 82% 51%)';
+                e.target.style.outlineOffset = '2px';
+            }
+        }, true);
+
+        document.addEventListener('blur', function(e) {
+            if (e.target.classList.contains('portfolio-card')) {
+                e.target.style.outline = 'none';
+            }
+        }, true);
+    </script>
+</body>
+</html>
